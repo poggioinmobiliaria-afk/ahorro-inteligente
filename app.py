@@ -1,7 +1,30 @@
 import streamlit as st
 import sqlite3
 import pandas as pd
+import requests
 
+def buscar_supertop(producto):
+    url = f"https://www.supertop.com.ar/api/catalog_system/pub/products/search/{producto}"
+    
+    response = requests.get(url)
+    data = response.json()
+    
+    resultados = []
+    
+    for item in data:
+        try:
+            nombre = item.get("productName")
+            precio = item.get("items")[0]["sellers"][0]["commertialOffer"]["Price"]
+            
+            resultados.append({
+                "nombre": nombre,
+                "precio": precio,
+                "supermercado": "SuperTop"
+            })
+        except:
+            pass
+    
+    return resultados
 # ===================================
 # CONFIGURACIÓN INICIAL
 # ===================================

@@ -198,67 +198,6 @@ if busqueda:
             st.write(f"💰 ${item['precio']}")
             st.markdown("---")
 
-    
-            
-            # Analizar precio
-            estado, diferencia, clase = analizar_precio(grupo)
-            
-            # Card del producto
-            st.markdown(f"""
-                <div class="producto-card {clase}">
-                    <h3 style="margin: 0;">{nombre}</h3>
-                </div>
-            """, unsafe_allow_html=True)
-            
-            # Información principal
-            col1, col2, col3 = st.columns(3)
-            
-            with col1:
-                st.markdown(f"<div class='precio-grande'>${mejor['precio']:,.0f}</div>", unsafe_allow_html=True)
-            
-            with col2:
-                st.write(f"**🏪 {mejor['supermercado']}**")
-                st.write(f"{estado} ({diferencia:+.1f}%)")
-            
-            with col3:
-                # Control de cantidad
-                cantidad = st.number_input(
-                    "Cantidad",
-                    min_value=1,
-                    value=1,
-                    step=1,
-                    key=f"cant_{nombre}",
-                    label_visibility="collapsed"
-                )
-            
-            # Botón agregar
-            col_btn1, col_btn2 = st.columns([1, 2])
-            
-            with col_btn1:
-                if st.button(f"➕ Agregar", key=f"btn_{nombre}", use_container_width=True):
-                    st.session_state.carrito.append({
-                        "producto": nombre,
-                        "precio": float(mejor["precio"]),
-                        "cantidad": cantidad,
-                        "supermercado": mejor["supermercado"]
-                    })
-                    st.success(f"✅ Agregado: {cantidad}x {nombre}")
-                    st.rerun()
-            
-            with col_btn2:
-                # Ver opciones
-                with st.expander("📋 Ver todas las opciones"):
-                    st.dataframe(
-                        grupo[["supermercado", "precio"]].reset_index(drop=True),
-                        use_container_width=True,
-                        hide_index=True
-                    )
-            
-            st.markdown("---")
-    
-    else:
-        st.warning(f"❌ No se encontraron productos para '{busqueda}'")
-        st.info("💡 Productos disponibles: leche, arroz, coca cola, aceite, fideos, yerba, papel higiénico, detergente, azúcar, café, harina, galletitas")
 
 # ===================================
 # CARRITO DE COMPRAS

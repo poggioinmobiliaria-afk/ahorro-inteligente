@@ -164,7 +164,18 @@ busqueda = st.text_input(
 # ===================================
 
 if busqueda:
-    conn = get_connection()
+
+    resultados_online = buscar_supertop(busqueda)
+
+    if resultados_online:
+        st.markdown("### 🌐 Precios en SuperTop")
+        
+        for item in resultados_online:
+            st.write(f"🛒 {item['nombre']}")
+            st.write(f"💰 ${item['precio']}")
+            st.markdown("---")
+
+     conn = get_connection()
     
     # Buscar productos
     query = f"""

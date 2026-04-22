@@ -198,27 +198,7 @@ if busqueda:
             st.write(f"💰 ${item['precio']}")
             st.markdown("---")
 
-    conn = get_connection()
     
-    # Buscar productos
-    query = f"""
-        SELECT nombre, precio, supermercado
-        FROM productos
-        WHERE nombre LIKE '%{busqueda}%'
-    """
-    
-    df = pd.read_sql(query, conn)
-    
-    if not df.empty:
-        st.markdown(f"### 📦 Resultados para '{busqueda}'")
-        
-        # Agrupar por nombre de producto
-        productos_grupo = df.groupby("nombre")
-        
-        for nombre, grupo in productos_grupo:
-            # Ordenar por precio
-            grupo = grupo.sort_values(by="precio")
-            mejor = grupo.iloc[0]
             
             # Analizar precio
             estado, diferencia, clase = analizar_precio(grupo)

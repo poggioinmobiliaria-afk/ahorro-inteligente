@@ -175,7 +175,7 @@ if busqueda:
             st.write(f"💰 ${item['precio']}")
             st.markdown("---")
 
-     conn = get_connection()
+    conn = get_connection()
     
     # Buscar productos
     query = f"""

@@ -2,6 +2,8 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 import requests
+if "carrito" not in st.session_state:
+    st.session_state.carrito = []
 
 def buscar_supertop(producto):
     url = f"https://www.supertop.com.ar/api/catalog_system/pub/products/search/{producto}"

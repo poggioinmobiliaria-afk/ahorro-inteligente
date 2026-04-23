@@ -208,7 +208,36 @@ if busqueda:
 
     st.markdown("---")
 
+st.markdown("## 🧾 Mi Lista de Compra")
 
+if st.session_state.carrito:
+
+    total = 0
+
+    for item in st.session_state.carrito:
+        st.write(f"🛒 {item['producto']} - 💰 ${item['precio']}")
+        total += item["precio"]
+
+    st.markdown(f"### 💵 Total: ${total}")
+
+    # Descargar lista
+    texto = ""
+    for item in st.session_state.carrito:
+        texto += f"{item['producto']} - ${item['precio']}\n"
+
+    st.download_button(
+        "📥 Descargar lista",
+        texto,
+        file_name="lista.txt"
+    )
+
+    # Vaciar carrito
+    if st.button("🗑️ Vaciar carrito"):
+        st.session_state.carrito = []
+        st.rerun()
+
+else:
+    st.info("Tu carrito está vacío")
 # ===================================
 # CARRITO DE COMPRAS
 # ===================================

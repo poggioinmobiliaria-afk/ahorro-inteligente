@@ -196,9 +196,17 @@ if busqueda:
         st.markdown("### 🌐 Precios en SuperTop")
         
         for item in resultados_online:
-            st.write(f"🛒 {item['nombre']}")
-            st.write(f"💰 ${item['precio']}")
-            st.markdown("---")
+    st.write(f"🛒 {item['nombre']}")
+    st.write(f"💰 ${item['precio']}")
+
+    if st.button(f"➕ Agregar {item['nombre']}"):
+        st.session_state.carrito.append({
+            "producto": item['nombre'],
+            "precio": item['precio'],
+            "supermercado": "SuperTop"
+        })
+
+    st.markdown("---")
 
 
 # ===================================

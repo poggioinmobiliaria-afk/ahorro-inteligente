@@ -25,7 +25,7 @@ body{width:1080px;height:1350px;overflow:hidden;position:relative;background:#4e
 .banda{position:absolute;left:0;right:0;top:880px;height:150px;background:#c9a27a;display:flex;align-items:center;justify-content:center}
 .banda span{font:700 104px 'DejaVu Serif',serif;color:#4e1b1f;letter-spacing:2px}
 .info{position:absolute;left:70px;right:70px;top:1062px;color:#fff}
-.tit{font:700 82px/1.05 'DejaVu Serif',serif}
+.tit{font:700 ${titulo.length<=18?82:titulo.length<=22?70:titulo.length<=26?62:54}px/1.05 'DejaVu Serif',serif;white-space:nowrap}
 .dir{font:36px 'DejaVu Sans';color:#d9b98a;margin-top:18px}
 .ciu{font:32px 'DejaVu Sans';color:#f0e2cf;margin-top:10px}
 .foot{position:absolute;left:70px;right:70px;bottom:52px;display:flex;justify-content:space-between;color:#f0e2cf;font:22px 'DejaVu Sans';letter-spacing:4px}
